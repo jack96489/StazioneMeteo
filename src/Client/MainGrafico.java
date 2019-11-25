@@ -175,7 +175,7 @@ public class MainGrafico extends javax.swing.JFrame {
 
     private void jButtonAccendiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAccendiMouseClicked
         // TODO add your handling code here:
-        if (jLabelStatusLed.getText().equals("Spento")) {
+        if (Acceso() == false) {
             client.send("2", portaServer, ip);//invio il comando
             System.out.println("Mandato richiesta di accensione LED");
             StringaDelServer = client.receive();
@@ -186,7 +186,7 @@ public class MainGrafico extends javax.swing.JFrame {
 
     private void jButtonSpegniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSpegniMouseClicked
         // TODO add your handling code here:
-        if (jLabelStatusLed.getText().equals("Acceso")) {
+        if (Acceso()) {
             client.send("3", portaServer, ip);//invio il comando
             System.out.println("Mandato richiesta di spegnimento LED");
             StringaDelServer = client.receive();
@@ -194,6 +194,19 @@ public class MainGrafico extends javax.swing.JFrame {
             System.out.println("SERVER: " + StringaDelServer);
         }
     }//GEN-LAST:event_jButtonSpegniMouseClicked
+    
+    //VISTO CHE CI SONO PIU CLIENT OGNI VOLTA DEVO VEDERE SE E' STATO MODIFICATO DA ALTRI LO STATO
+    private boolean Acceso() {
+        boolean acceso = false;
+        String ServerRisp = "";
+        client.send("1", portaServer, ip);//invio il comando
+        ServerRisp = client.receive();
+        
+        if (ServerRisp.equals("Acceso")) {
+            acceso = true;
+        }
+        return acceso;
+    }
 
     /**
      * @param args the command line arguments
