@@ -4,7 +4,9 @@
       <root url="file://$PROJECT_DIR$/lib/jSSC-2.8.0-Release" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/jSSC-2.8.0-Release/src/jssc-2.8.0-src.jar!/src" />
+    </SOURCES>
     <jarDirectory url="file://$PROJECT_DIR$/lib/jSSC-2.8.0-Release" recursive="false" />
   </library>
 </component>
