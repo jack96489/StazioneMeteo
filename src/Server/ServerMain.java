@@ -4,14 +4,17 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
-public class Main {
+public class ServerMain {
 
-    private static final DatiCondivisi dc = new DatiCondivisi();
+    private static final ServerManager dc = ServerManager.getInstance();
 
     @SuppressWarnings("InfiniteLoopStatement")
     public static void main(String[] args) {
 
         try {
+
+            new ArduinoReceiveThread().start();
+
             final DatagramSocket socket = new DatagramSocket(8000);
 
             while (true) {

@@ -7,10 +7,10 @@ import java.net.DatagramSocket;
 public class ClientCommunicationThread extends Thread {
 
     private final DatagramPacket packet;
-    private final DatiCondivisi dati;
+    private final ServerManager dati;
     private final DatagramSocket socket;
 
-    public ClientCommunicationThread(DatagramPacket packet, DatagramSocket socket, DatiCondivisi dati) {
+    public ClientCommunicationThread(DatagramPacket packet, DatagramSocket socket, ServerManager dati) {
         this.packet = packet;
         this.dati = dati;
         this.socket = socket;

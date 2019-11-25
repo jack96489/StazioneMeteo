@@ -1,22 +1,22 @@
 package Client;
 
+import Shared.Settings;
+import Shared.SocketUDP;
+
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFileChooser;
 
-public class Main {
+public class ClientMain {
 
     public static void main(String[] args) throws UnknownHostException, SocketException, IOException {
 
-        int portaServer = 8000;	//porta del server
-        String ip = "172.16.102.168";
+        int portaServer = Settings.SERVER_PORT;    //porta del server
+        String ip = "localhost";
         String scelta = "";
         Scanner sc = new Scanner(System.in);
-        socketUDP client = new socketUDP();
-        String StringaDelServer="";
+        SocketUDP client = new SocketUDP();
+        String StringaDelServer = "";
 
         while (!scelta.equals("Esci")) {
             System.out.println("Seleziona cosa fare, digita [1], per fare vedere se On/Off, [2] per accendere, [3] per spegnere, [Esci] per terminare tutto");

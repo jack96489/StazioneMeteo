@@ -3,7 +3,9 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$/lib/jSSC-2.8.0-Release" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/jSSC-2.8.0-Release/javadoc/jssc-2.8.0-javadoc.jar!/javadoc" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/lib/jSSC-2.8.0-Release/src/jssc-2.8.0-src.jar!/src" />
     </SOURCES>
