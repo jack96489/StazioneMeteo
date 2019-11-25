@@ -19,7 +19,7 @@ import javax.swing.JFileChooser;
 public class MainGrafico extends javax.swing.JFrame {
 
     int portaServer = 8000;	//porta del server
-    String ip = "172.16.102.168";
+    String ip = "localhost";//172.16.102.168
 
     socketUDP client = new socketUDP();
     String StringaDelServer = "";
@@ -27,18 +27,6 @@ public class MainGrafico extends javax.swing.JFrame {
     public MainGrafico() {
         initComponents();
 
-        if (jLabelStatusLed.getText().equals("STATUS")) {
-            jButtonAccendi.setEnabled(false);
-            jButtonSpegni.setEnabled(false);
-        }
-        if (jLabelStatusLed.getText().equals("Acceso")) {
-            jButtonAccendi.setEnabled(false);
-            jButtonSpegni.setEnabled(true);
-        }
-        if (jLabelStatusLed.getText().equals("Spento")) {
-            jButtonAccendi.setEnabled(true);
-            jButtonSpegni.setEnabled(false);
-        }
     }
 
     /**
