@@ -48,6 +48,7 @@ public class MainGrafico extends javax.swing.JFrame {
         jButtonAccendi = new javax.swing.JButton();
         jLabelSpegniLed = new javax.swing.JLabel();
         jButtonSpegni = new javax.swing.JButton();
+        jLabelErrore = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -99,61 +100,72 @@ public class MainGrafico extends javax.swing.JFrame {
             }
         });
 
+        jLabelErrore.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabelErrore.setForeground(new java.awt.Color(255, 51, 51));
+        jLabelErrore.setText("WORKING...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelErrore)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jButtonStatus)
+                                .addGap(90, 90, 90)
+                                .addComponent(jLabelStatusLed))
+                            .addComponent(jLabelStatoLedSopra)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(19, 19, 19)
-                                                .addComponent(jButtonStatus)
-                                                .addGap(90, 90, 90)
-                                                .addComponent(jLabelStatusLed))
-                                        .addComponent(jLabelStatoLedSopra)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addGroup(layout.createSequentialGroup()
-                                                                        .addGap(19, 19, 19)
-                                                                        .addComponent(jButtonAccendi))
-                                                                .addGroup(layout.createSequentialGroup()
-                                                                        .addGap(27, 27, 27)
-                                                                        .addComponent(jLabelAccendiLed)))
-                                                        .addGap(75, 75, 75)
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(jButtonSpegni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addGroup(layout.createSequentialGroup()
-                                                                        .addGap(14, 14, 14)
-                                                                        .addComponent(jLabelSpegniLed))))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                        .addGap(36, 36, 36)
-                                                        .addComponent(jLabelTitoloForm))))
-                                .addContainerGap(55, Short.MAX_VALUE))
+                                            .addGap(19, 19, 19)
+                                            .addComponent(jButtonAccendi))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(27, 27, 27)
+                                            .addComponent(jLabelAccendiLed)))
+                                    .addGap(75, 75, 75)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButtonSpegni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(14, 14, 14)
+                                            .addComponent(jLabelSpegniLed))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(36, 36, 36)
+                                    .addComponent(jLabelTitoloForm))))
+                        .addContainerGap(55, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabelTitoloForm)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelStatoLedSopra)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabelStatusLed)
-                                        .addComponent(jButtonStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelAccendiLed)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButtonAccendi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelSpegniLed)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButtonSpegni, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(76, Short.MAX_VALUE))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabelTitoloForm)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelStatoLedSopra)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelStatusLed)
+                    .addComponent(jButtonStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelAccendiLed)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAccendi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelSpegniLed)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonSpegni, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(jLabelErrore)
+                .addContainerGap())
         );
 
         pack();
@@ -180,7 +192,10 @@ public class MainGrafico extends javax.swing.JFrame {
             System.out.println("Mandato richiesta di accensione LED");
             StringaDelServer = client.receive();
             jLabelStatusLed.setText(StringaDelServer);//modifico sempre lo stato, il button per vedere lo status serve a vedere
+            jLabelErrore.setText("");
             System.out.println("SERVER: " + StringaDelServer);  //per quando un altro modifica lo stato
+        }else{
+             jLabelErrore.setText("IL LED E' GIA' ACCESO");
         }
     }//GEN-LAST:event_jButtonAccendiMouseClicked
 
@@ -191,7 +206,10 @@ public class MainGrafico extends javax.swing.JFrame {
             System.out.println("Mandato richiesta di spegnimento LED");
             StringaDelServer = client.receive();
             jLabelStatusLed.setText(StringaDelServer);
+            jLabelErrore.setText("");
             System.out.println("SERVER: " + StringaDelServer);
+        }else{
+            jLabelErrore.setText("IL LED E' GIA' SPENTO");
         }
     }//GEN-LAST:event_jButtonSpegniMouseClicked
     
@@ -248,6 +266,7 @@ public class MainGrafico extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSpegni;
     private javax.swing.JButton jButtonStatus;
     private javax.swing.JLabel jLabelAccendiLed;
+    private javax.swing.JLabel jLabelErrore;
     private javax.swing.JLabel jLabelSpegniLed;
     private javax.swing.JLabel jLabelStatoLedSopra;
     private javax.swing.JLabel jLabelStatusLed;
