@@ -24,15 +24,15 @@ public class ClientCommunicationThread extends Thread {
         String response = "";
         switch (ricevuto) {
             case 1:
-                response = dati.isLuceAccesa() ? "Accesa" : "Spenta";
+                response = dati.isLuceAccesa() ? "Acceso" : "Spento";
                 break;
             case 2:
                 dati.accendiLuce();
-                response = "Luce accesa";
+                response = "Acceso";
                 break;
             case 3:
                 dati.spegniLuce();
-                response = "Luce spenta";
+                response = "Spento";
                 break;
             default:
                 System.err.println("OOOOO");
