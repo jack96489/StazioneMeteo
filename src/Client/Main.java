@@ -23,19 +23,17 @@ public class Main {
 
             scelta = sc.nextLine(); // 1 accesa o spenta, 2 lo accende, il 3 lo spegne
             System.out.println("hai selezionato " + scelta);
-            
-            if (scelta.equals("1")) {
 
-                client.send("1", portaServer, ip);//invio il comando
-
-            } else if (scelta.equals("2")) {
-
-                client.send("2", portaServer, ip);//invio il comando
-
-            } else if (scelta.equals("3")) {
-
-                client.send("3", portaServer, ip);//invio il comando
-
+            switch (scelta) {
+                case "1":
+                    client.send("1", portaServer, ip);//invio il comando
+                    break;
+                case "2":
+                    client.send("2", portaServer, ip);//invio il comando
+                    break;
+                case "3":
+                    client.send("3", portaServer, ip);//invio il comando
+                    break;
             }
             //Dopo che mando il comando devo aspettare la risposta
             StringaDelServer = client.receive();
