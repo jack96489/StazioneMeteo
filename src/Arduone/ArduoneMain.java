@@ -14,7 +14,8 @@ public class ArduoneMain {
         new ReceiveThread().start();
 
 
-        //Mando a caso luce accesa e spenta
+        //Mando a caso luce accesa e spenta ogni 10 secondi
+        //Simula dei comandi mandati da Arduino via seriale
         SocketUDP socket = new SocketUDP();
         Random rn = new Random();
         while (true) {

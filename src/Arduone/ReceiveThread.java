@@ -16,7 +16,9 @@ public class ReceiveThread extends Thread {
 
     @Override
     public void run() {
-        final String ris = socket.receive();
-        System.out.println(ris);
+        while (true) {
+            final String ris = socket.receive();
+            System.out.println(ris);
+        }
     }
 }
