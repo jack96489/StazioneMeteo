@@ -25,7 +25,7 @@ void loop() {
         Serial.write("OK");    //confermo
         break;
       default:
-        Serial.write("Comando non conoscuito");
+        Serial.write("Comando non conosciuto");
     }
   }
   delay(10);

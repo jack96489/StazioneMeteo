@@ -26,9 +26,12 @@ public class MainGrafico extends javax.swing.JFrame {
     SocketUDP client = new SocketUDP();
     String StringaDelServer = "";
 
+    FinestraComandi Fc = new FinestraComandi();
+    
     public MainGrafico() {
         initComponents();
-
+        Fc.setVisible(false);
+        Fc.getTextArea().append("COMUNICAZIONE TRA CLIENT E SERVER:"+"\n");
     }
 
     /**
@@ -49,9 +52,9 @@ public class MainGrafico extends javax.swing.JFrame {
         jLabelSpegniLed = new javax.swing.JLabel();
         jButtonSpegni = new javax.swing.JButton();
         jLabelErrore = new javax.swing.JLabel();
+        jButtonCMD = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
@@ -104,6 +107,13 @@ public class MainGrafico extends javax.swing.JFrame {
         jLabelErrore.setForeground(new java.awt.Color(255, 51, 51));
         jLabelErrore.setText("WORKING...");
 
+        jButtonCMD.setText("CMD");
+        jButtonCMD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonCMDMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,9 +121,20 @@ public class MainGrafico extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelErrore)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jButtonAccendi))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabelAccendiLed)))
+                        .addGap(75, 75, 75)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonSpegni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabelSpegniLed))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -122,25 +143,15 @@ public class MainGrafico extends javax.swing.JFrame {
                                 .addGap(90, 90, 90)
                                 .addComponent(jLabelStatusLed))
                             .addComponent(jLabelStatoLedSopra)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(19, 19, 19)
-                                            .addComponent(jButtonAccendi))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(27, 27, 27)
-                                            .addComponent(jLabelAccendiLed)))
-                                    .addGap(75, 75, 75)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jButtonSpegni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(14, 14, 14)
-                                            .addComponent(jLabelSpegniLed))))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(36, 36, 36)
-                                    .addComponent(jLabelTitoloForm))))
-                        .addContainerGap(55, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabelTitoloForm)))
+                        .addGap(0, 27, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelErrore)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCMD, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,21 +161,26 @@ public class MainGrafico extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabelStatoLedSopra)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelStatusLed)
-                    .addComponent(jButtonStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelAccendiLed)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonAccendi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelSpegniLed)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonSpegni, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(jLabelErrore)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelStatusLed)
+                            .addComponent(jButtonStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelAccendiLed)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonAccendi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelSpegniLed)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonSpegni, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addComponent(jLabelErrore))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonCMD, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -178,10 +194,16 @@ public class MainGrafico extends javax.swing.JFrame {
     private void jButtonStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonStatusMouseClicked
         // TODO add your handling code here:
         client.sendString("1", portaServer, ip);//invio il comando
+        
         System.out.println("Mandato richiesta di ON/OFF attesa risposta...");
+        
         StringaDelServer = client.receiveString();
+        
         jLabelStatusLed.setText(StringaDelServer);
+        
         System.out.println("SERVER: " + StringaDelServer);
+        
+         Fc.getTextArea().append("SERVER: "+ StringaDelServer +"\n");
 
     }//GEN-LAST:event_jButtonStatusMouseClicked
 
@@ -189,11 +211,16 @@ public class MainGrafico extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (Acceso() == false) {
             client.sendString("2", portaServer, ip);//invio il comando
+            
             System.out.println("Mandato richiesta di accensione LED");
+             Fc.getTextArea().append("Mandato richiesta di accensione LED"+"\n");
+            
             StringaDelServer = client.receiveString();
             jLabelStatusLed.setText(StringaDelServer);//modifico sempre lo stato, il button per vedere lo status serve a vedere
             jLabelErrore.setText("");
+            
             System.out.println("SERVER: " + StringaDelServer);  //per quando un altro modifica lo stato
+             Fc.getTextArea().append("SERVER: "+ StringaDelServer+"\n");
         }else{
              jLabelErrore.setText("IL LED E' GIA' ACCESO");
              jLabelStatusLed.setText("Acceso");
@@ -204,16 +231,26 @@ public class MainGrafico extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (Acceso()) {
             client.sendString("3", portaServer, ip);//invio il comando
+            
             System.out.println("Mandato richiesta di spegnimento LED");
+             Fc.getTextArea().append("Mandato richiesta di spegnimento LED" +"\n");
+            
             StringaDelServer = client.receiveString();
             jLabelStatusLed.setText(StringaDelServer);
             jLabelErrore.setText("");
+            
             System.out.println("SERVER: " + StringaDelServer);
+             Fc.getTextArea().append("SERVER: "+ StringaDelServer+"\n");
         }else{
             jLabelErrore.setText("IL LED E' GIA' SPENTO");
             jLabelStatusLed.setText("Spento");
         }
     }//GEN-LAST:event_jButtonSpegniMouseClicked
+
+    private void jButtonCMDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCMDMouseClicked
+        // TODO add your handling code here:
+         Fc.setVisible(true);
+    }//GEN-LAST:event_jButtonCMDMouseClicked
     
     //VISTO CHE CI SONO PIU CLIENT OGNI VOLTA DEVO VEDERE SE E' STATO MODIFICATO DA ALTRI LO STATO
     private boolean Acceso() {
@@ -265,6 +302,7 @@ public class MainGrafico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAccendi;
+    private javax.swing.JButton jButtonCMD;
     private javax.swing.JButton jButtonSpegni;
     private javax.swing.JButton jButtonStatus;
     private javax.swing.JLabel jLabelAccendiLed;
