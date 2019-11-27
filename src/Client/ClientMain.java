@@ -10,7 +10,7 @@ public class ClientMain {
     public static void main(String[] args) {
 
         int portaServer = Settings.SERVER_PORT;    //porta del server
-        String ip = "localhost";
+        String ip = Settings.SERVER_IP; //"localhost";
         String scelta = "";
         Scanner sc = new Scanner(System.in);
         SocketUDP client = new SocketUDP();

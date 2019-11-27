@@ -1,5 +1,7 @@
 package Server;
 
+import Shared.Settings;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -15,7 +17,7 @@ public class ServerMain {
 
             new ArduinoReceiveThread().start();
 
-            final DatagramSocket socket = new DatagramSocket(8000);
+            final DatagramSocket socket = new DatagramSocket(Settings.SERVER_PORT);
 
             while (true) {
                 byte[] bufferIN = new byte[1024];

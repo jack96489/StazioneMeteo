@@ -21,7 +21,7 @@ import javax.swing.JFileChooser;
 public class MainGrafico extends javax.swing.JFrame {
 
     int portaServer = Settings.SERVER_PORT;    //porta del server
-    String ip = "localhost";//172.16.102.168//localhost
+    String ip = Settings.SERVER_IP; //172.16.102.168//localhost
 
     SocketUDP client = new SocketUDP();
     String StringaDelServer = "";
