@@ -7,6 +7,7 @@ import jssc.SerialPortException;
 import jssc.SerialPortList;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Ascolta le richieste provenienti dal server e destinate ad Arduone
@@ -28,18 +29,27 @@ public class ReceiveThread extends Thread {
         for (String portName : portNames) {
             System.out.println(portName);
         }
-        seriale = new SerialPort("COM1");
+        seriale = new SerialPort("COM3");
+        try {
+            seriale.openPort();
+            seriale.setParams(9600, 8, 2, 0);   //valori a caso che sembrano andare
+        } catch (SerialPortException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     @SuppressWarnings("InfiniteLoopStatement")
     public void run() {
         while (true) {
-            final String ris = socket.receive();
+            final byte ris = socket.receiveByte();
             System.out.println(ris);
             try {
-                seriale.writeString(ris);
-            } catch (SerialPortException e) {
+                seriale.writeByte(ris);
+                sleep(50);
+                System.out.println(seriale.readString());
+                sleep(1);
+            } catch (SerialPortException | InterruptedException e) {
                 e.printStackTrace();
             }
         }

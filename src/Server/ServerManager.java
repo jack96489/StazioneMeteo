@@ -26,12 +26,12 @@ public class ServerManager {
 
     public synchronized void accendiLuce() {
         this.luce = true;
-        socket.send("accendi luce", Settings.ARDUINO_PORT, "localhost");
+        socket.sendByte((byte) 2, Settings.ARDUINO_PORT, "localhost");
     }
 
     public synchronized void spegniLuce() {
         this.luce = false;
-        socket.send("spegni luce", Settings.ARDUINO_PORT, "localhost");
+        socket.sendByte((byte) 3, Settings.ARDUINO_PORT, "localhost");
     }
 
     public synchronized void setLuce(boolean luce) {

@@ -21,7 +21,7 @@ import javax.swing.JFileChooser;
 public class MainGrafico extends javax.swing.JFrame {
 
     int portaServer = Settings.SERVER_PORT;    //porta del server
-    String ip = "172.16.102.168";//172.16.102.168//localhost
+    String ip = "localhost";//172.16.102.168//localhost
 
     SocketUDP client = new SocketUDP();
     String StringaDelServer = "";
@@ -177,9 +177,9 @@ public class MainGrafico extends javax.swing.JFrame {
 
     private void jButtonStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonStatusMouseClicked
         // TODO add your handling code here:
-        client.send("1", portaServer, ip);//invio il comando
+        client.sendString("1", portaServer, ip);//invio il comando
         System.out.println("Mandato richiesta di ON/OFF attesa risposta...");
-        StringaDelServer = client.receive();
+        StringaDelServer = client.receiveString();
         jLabelStatusLed.setText(StringaDelServer);
         System.out.println("SERVER: " + StringaDelServer);
 
@@ -188,9 +188,9 @@ public class MainGrafico extends javax.swing.JFrame {
     private void jButtonAccendiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAccendiMouseClicked
         // TODO add your handling code here:
         if (Acceso() == false) {
-            client.send("2", portaServer, ip);//invio il comando
+            client.sendString("2", portaServer, ip);//invio il comando
             System.out.println("Mandato richiesta di accensione LED");
-            StringaDelServer = client.receive();
+            StringaDelServer = client.receiveString();
             jLabelStatusLed.setText(StringaDelServer);//modifico sempre lo stato, il button per vedere lo status serve a vedere
             jLabelErrore.setText("");
             System.out.println("SERVER: " + StringaDelServer);  //per quando un altro modifica lo stato
@@ -203,9 +203,9 @@ public class MainGrafico extends javax.swing.JFrame {
     private void jButtonSpegniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSpegniMouseClicked
         // TODO add your handling code here:
         if (Acceso()) {
-            client.send("3", portaServer, ip);//invio il comando
+            client.sendString("3", portaServer, ip);//invio il comando
             System.out.println("Mandato richiesta di spegnimento LED");
-            StringaDelServer = client.receive();
+            StringaDelServer = client.receiveString();
             jLabelStatusLed.setText(StringaDelServer);
             jLabelErrore.setText("");
             System.out.println("SERVER: " + StringaDelServer);
@@ -219,8 +219,8 @@ public class MainGrafico extends javax.swing.JFrame {
     private boolean Acceso() {
         boolean acceso = false;
         String ServerRisp = "";
-        client.send("1", portaServer, ip);//invio il comando
-        ServerRisp = client.receive();
+        client.sendString("1", portaServer, ip);//invio il comando
+        ServerRisp = client.receiveString();
         
         if (ServerRisp.equals("Acceso")) {
             acceso = true;

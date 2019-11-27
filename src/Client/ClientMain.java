@@ -3,13 +3,11 @@ package Client;
 import Shared.Settings;
 import Shared.SocketUDP;
 
-import java.io.*;
-import java.net.*;
 import java.util.Scanner;
 
 public class ClientMain {
 
-    public static void main(String[] args) throws UnknownHostException, SocketException, IOException {
+    public static void main(String[] args) {
 
         int portaServer = Settings.SERVER_PORT;    //porta del server
         String ip = "localhost";
@@ -26,17 +24,17 @@ public class ClientMain {
 
             switch (scelta) {
                 case "1":
-                    client.send("1", portaServer, ip);//invio il comando
+                    client.sendString("1", portaServer, ip);//invio il comando
                     break;
                 case "2":
-                    client.send("2", portaServer, ip);//invio il comando
+                    client.sendString("2", portaServer, ip);//invio il comando
                     break;
                 case "3":
-                    client.send("3", portaServer, ip);//invio il comando
+                    client.sendString("3", portaServer, ip);//invio il comando
                     break;
             }
             //Dopo che mando il comando devo aspettare la risposta
-            StringaDelServer = client.receive();
+            StringaDelServer = client.receiveString();
             System.out.println(StringaDelServer);
         }
         client.closeConnection();

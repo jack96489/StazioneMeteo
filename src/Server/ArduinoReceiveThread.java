@@ -20,7 +20,7 @@ public class ArduinoReceiveThread extends Thread {
     public void run() {
         final ServerManager dati = ServerManager.getInstance();
         while (true) {
-            final String ris = socket.receive();
+            final String ris = socket.receiveString();
 
 
             //Riceve dall'Arduone i dati sullo stato della luce
