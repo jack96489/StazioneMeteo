@@ -27,11 +27,11 @@ public class MainGrafico extends javax.swing.JFrame {
     String StringaDelServer = "";
 
     FinestraComandi Fc = new FinestraComandi();
-    
+
     public MainGrafico() {
         initComponents();
         Fc.setVisible(false);
-        Fc.getTextArea().append("COMUNICAZIONE TRA CLIENT E SERVER:"+"\n");
+        Fc.getTextArea().append("COMUNICAZIONE TRA CLIENT E SERVER:" + "\n");
     }
 
     /**
@@ -53,6 +53,9 @@ public class MainGrafico extends javax.swing.JFrame {
         jButtonSpegni = new javax.swing.JButton();
         jLabelErrore = new javax.swing.JLabel();
         jButtonCMD = new javax.swing.JButton();
+        jLabelPotenziometroSopra = new javax.swing.JLabel();
+        jButtonValorePotenziometro = new javax.swing.JButton();
+        jLabelValorePotenziometro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -60,7 +63,7 @@ public class MainGrafico extends javax.swing.JFrame {
         setResizable(false);
 
         jLabelTitoloForm.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabelTitoloForm.setText("ESERCIZIO LED C/S+ARDUINO");
+        jLabelTitoloForm.setText("ESERCIZIO  C/S+ARDUINO");
         jLabelTitoloForm.setToolTipText("");
 
         jLabelStatusLed.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -114,74 +117,94 @@ public class MainGrafico extends javax.swing.JFrame {
             }
         });
 
+        jLabelPotenziometroSopra.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabelPotenziometroSopra.setText("VALORE POTENZIOMETRO");
+
+        jButtonValorePotenziometro.setText("VERIFICA VALORE");
+        jButtonValorePotenziometro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonValorePotenziometroMouseClicked(evt);
+            }
+        });
+        jButtonValorePotenziometro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonValorePotenziometroActionPerformed(evt);
+            }
+        });
+
+        jLabelValorePotenziometro.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabelValorePotenziometro.setText("VAL.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelStatoLedSopra)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelAccendiLed)
+                            .addComponent(jButtonAccendi)
+                            .addComponent(jLabelSpegniLed)
+                            .addComponent(jButtonSpegni, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonCMD)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonStatus)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelStatusLed)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jButtonAccendi))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabelAccendiLed)))
-                        .addGap(75, 75, 75)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonSpegni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabelSpegniLed))))
+                        .addComponent(jLabelPotenziometroSopra)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonValorePotenziometro)
+                        .addGap(46, 46, 46))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabelValorePotenziometro)
+                        .addGap(85, 85, 85))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jButtonStatus)
-                                .addGap(90, 90, 90)
-                                .addComponent(jLabelStatusLed))
-                            .addComponent(jLabelStatoLedSopra)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabelTitoloForm)))
-                        .addGap(0, 27, Short.MAX_VALUE))
+                        .addGap(96, 96, 96)
+                        .addComponent(jLabelTitoloForm))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelErrore)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCMD, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabelErrore)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addComponent(jLabelTitoloForm)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelStatoLedSopra)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelStatoLedSopra)
+                    .addComponent(jLabelPotenziometroSopra))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelStatusLed)
+                    .addComponent(jButtonValorePotenziometro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelStatusLed)
-                            .addComponent(jButtonStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelAccendiLed)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonAccendi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelSpegniLed)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonSpegni, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(jLabelErrore))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonCMD, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addComponent(jLabelAccendiLed)
+                    .addComponent(jLabelValorePotenziometro))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonAccendi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(jLabelSpegniLed)
+                .addGap(3, 3, 3)
+                .addComponent(jButtonSpegni, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(jButtonCMD)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelErrore)
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -194,16 +217,16 @@ public class MainGrafico extends javax.swing.JFrame {
     private void jButtonStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonStatusMouseClicked
         // TODO add your handling code here:
         client.sendString("1", portaServer, ip);//invio il comando
-        
+
         System.out.println("Mandato richiesta di ON/OFF attesa risposta...");
-        
+
         StringaDelServer = client.receiveString();
-        
+
         jLabelStatusLed.setText(StringaDelServer);
-        
+
         System.out.println("SERVER: " + StringaDelServer);
-        
-         Fc.getTextArea().append("SERVER: "+ StringaDelServer +"\n");
+
+        Fc.getTextArea().append("SERVER: " + StringaDelServer + "\n");
 
     }//GEN-LAST:event_jButtonStatusMouseClicked
 
@@ -211,19 +234,19 @@ public class MainGrafico extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (Acceso() == false) {
             client.sendString("2", portaServer, ip);//invio il comando
-            
+
             System.out.println("Mandato richiesta di accensione LED");
-             Fc.getTextArea().append("Mandato richiesta di accensione LED"+"\n");
-            
+            Fc.getTextArea().append("Mandato richiesta di accensione LED" + "\n");
+
             StringaDelServer = client.receiveString();
             jLabelStatusLed.setText(StringaDelServer);//modifico sempre lo stato, il button per vedere lo status serve a vedere
             jLabelErrore.setText("");
-            
+
             System.out.println("SERVER: " + StringaDelServer);  //per quando un altro modifica lo stato
-             Fc.getTextArea().append("SERVER: "+ StringaDelServer+"\n");
-        }else{
-             jLabelErrore.setText("IL LED E' GIA' ACCESO");
-             jLabelStatusLed.setText("Acceso");
+            Fc.getTextArea().append("SERVER: " + StringaDelServer + "\n");
+        } else {
+            jLabelErrore.setText("IL LED E' GIA' ACCESO");
+            jLabelStatusLed.setText("Acceso");
         }
     }//GEN-LAST:event_jButtonAccendiMouseClicked
 
@@ -231,17 +254,17 @@ public class MainGrafico extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (Acceso()) {
             client.sendString("3", portaServer, ip);//invio il comando
-            
+
             System.out.println("Mandato richiesta di spegnimento LED");
-             Fc.getTextArea().append("Mandato richiesta di spegnimento LED" +"\n");
-            
+            Fc.getTextArea().append("Mandato richiesta di spegnimento LED" + "\n");
+
             StringaDelServer = client.receiveString();
             jLabelStatusLed.setText(StringaDelServer);
             jLabelErrore.setText("");
-            
+
             System.out.println("SERVER: " + StringaDelServer);
-             Fc.getTextArea().append("SERVER: "+ StringaDelServer+"\n");
-        }else{
+            Fc.getTextArea().append("SERVER: " + StringaDelServer + "\n");
+        } else {
             jLabelErrore.setText("IL LED E' GIA' SPENTO");
             jLabelStatusLed.setText("Spento");
         }
@@ -249,16 +272,34 @@ public class MainGrafico extends javax.swing.JFrame {
 
     private void jButtonCMDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCMDMouseClicked
         // TODO add your handling code here:
-         Fc.setVisible(true);
+        Fc.setVisible(true);
     }//GEN-LAST:event_jButtonCMDMouseClicked
-    
+
+    private void jButtonValorePotenziometroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonValorePotenziometroMouseClicked
+        // TODO add your handling code here:
+        client.sendString("4", portaServer, ip);//invio il comando
+
+        System.out.println("Mandato richiesta di ottenimento valore potenziometro");
+        Fc.getTextArea().append("Mandato richiesta di ottenimento valore potenziometro" + "\n");
+
+        StringaDelServer = client.receiveString();
+        jLabelValorePotenziometro.setText(StringaDelServer);
+
+        System.out.println("SERVER: " + StringaDelServer);  //per quando un altro modifica lo stato
+        Fc.getTextArea().append("SERVER: " + StringaDelServer + "\n");
+    }//GEN-LAST:event_jButtonValorePotenziometroMouseClicked
+
+    private void jButtonValorePotenziometroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValorePotenziometroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonValorePotenziometroActionPerformed
+
     //VISTO CHE CI SONO PIU CLIENT OGNI VOLTA DEVO VEDERE SE E' STATO MODIFICATO DA ALTRI LO STATO
     private boolean Acceso() {
         boolean acceso = false;
         String ServerRisp = "";
         client.sendString("1", portaServer, ip);//invio il comando
         ServerRisp = client.receiveString();
-        
+
         if (ServerRisp.equals("Acceso")) {
             acceso = true;
         }
@@ -305,11 +346,14 @@ public class MainGrafico extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCMD;
     private javax.swing.JButton jButtonSpegni;
     private javax.swing.JButton jButtonStatus;
+    private javax.swing.JButton jButtonValorePotenziometro;
     private javax.swing.JLabel jLabelAccendiLed;
     private javax.swing.JLabel jLabelErrore;
+    private javax.swing.JLabel jLabelPotenziometroSopra;
     private javax.swing.JLabel jLabelSpegniLed;
     private javax.swing.JLabel jLabelStatoLedSopra;
     private javax.swing.JLabel jLabelStatusLed;
     private javax.swing.JLabel jLabelTitoloForm;
+    private javax.swing.JLabel jLabelValorePotenziometro;
     // End of variables declaration//GEN-END:variables
 }

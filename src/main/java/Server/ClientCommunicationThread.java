@@ -16,7 +16,6 @@ public class ClientCommunicationThread extends Thread {
         this.socket = socket;
     }
 
-
     @Override
     public void run() {
         final int ricevuto = Integer.parseInt(new String(packet.getData()).substring(0, packet.getLength()));
@@ -34,6 +33,7 @@ public class ClientCommunicationThread extends Thread {
                 dati.spegniLuce();
                 response = "Spento";
                 break;
+            //QUI CI VA CASE 4 PER IL POTENZIOMETRO
             default:
                 System.err.println("OOOOO");
                 break;
