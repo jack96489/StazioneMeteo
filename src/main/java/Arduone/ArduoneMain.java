@@ -1,17 +1,23 @@
 package Arduone;
 
-import Shared.Settings;
-import Shared.SocketUDP;
-//import jssc.SerialPort;
+import purejavacomm.NoSuchPortException;
+import purejavacomm.PortInUseException;
+import purejavacomm.UnsupportedCommOperationException;
 
-import java.util.Random;
+import java.io.IOException;
+
+//import jssc.SerialPort;
 
 public class ArduoneMain {
     //SerialPort a;
 
     @SuppressWarnings("InfiniteLoopStatement")
     public static void main(String[] args) {
-        new ReceiveThread().start();
+        try {
+            new ReceiveThread().start();
+        } catch (NoSuchPortException | UnsupportedCommOperationException | IOException | PortInUseException e) {
+            e.printStackTrace();
+        }
 
 //
 //        //Mando a caso luce accesa e spenta ogni 10 secondi
