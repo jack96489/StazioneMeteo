@@ -240,7 +240,7 @@ public class MainGrafico extends javax.swing.JFrame {
 
             StringaDelServer = client.receiveString();
             jLabelStatusLed.setText(StringaDelServer);//modifico sempre lo stato, il button per vedere lo status serve a vedere
-            jLabelErrore.setText("");
+            jLabelErrore.setText("WORKING...");
 
             System.out.println("SERVER: " + StringaDelServer);  //per quando un altro modifica lo stato
             Fc.getTextArea().append("SERVER: " + StringaDelServer + "\n");
@@ -260,7 +260,7 @@ public class MainGrafico extends javax.swing.JFrame {
 
             StringaDelServer = client.receiveString();
             jLabelStatusLed.setText(StringaDelServer);
-            jLabelErrore.setText("");
+            jLabelErrore.setText("WORKING...");
 
             System.out.println("SERVER: " + StringaDelServer);
             Fc.getTextArea().append("SERVER: " + StringaDelServer + "\n");
