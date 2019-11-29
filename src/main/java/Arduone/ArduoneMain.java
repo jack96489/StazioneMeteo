@@ -1,21 +1,39 @@
 package Arduone;
 
-import purejavacomm.NoSuchPortException;
-import purejavacomm.PortInUseException;
-import purejavacomm.UnsupportedCommOperationException;
+import Shared.Settings;
+import Shared.SocketUDP;
+import purejavacomm.*;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.TooManyListenersException;
 
 //import jssc.SerialPort;
 
 public class ArduoneMain {
     //SerialPort a;
 
-    @SuppressWarnings("InfiniteLoopStatement")
     public static void main(String[] args) {
+
         try {
-            new ReceiveThread().start();
-        } catch (NoSuchPortException | UnsupportedCommOperationException | IOException | PortInUseException e) {
+            final Seriale seriale = new Seriale();
+            new ReceiveThread(seriale).start();
+            SocketUDP socket = new SocketUDP();
+            seriale.getPort().addEventListener(event -> {
+                if (event.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
+                    try {
+                        String receive = seriale.receiveString();
+                        System.out.println(receive);
+                        System.out.println(receive.length());
+                        if (receive.startsWith("4:")) {
+                            socket.sendString(receive, Settings.SERVER_ARDUINO_PORT, Settings.SERVER_IP);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } catch (PortInUseException | UnsupportedCommOperationException | IOException | TooManyListenersException | NoSuchPortException e) {
             e.printStackTrace();
         }
 

@@ -1,4 +1,7 @@
 #define LED_PIN 2
+#define POTENZIOMETRO_PIN A0
+
+int potenziometro;
 
 void setup() {
   // put your setup code here, to run once:
@@ -8,25 +11,31 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+    int temp = analogRead(POTENZIOMETRO_PIN);
+    if(temp!=potenziometro){
+      Serial.println("4:"+String(temp));
+      potenziometro=temp;
+    }
+
 
   if (Serial.available()) {
     byte read = Serial.read();
-    Serial.print(read);
+    //Serial.write(read);
 
     switch (read) {
       case 2:
-        Serial.print("ACCENDO");
+        Serial.println("ACCENDO");
         digitalWrite(LED_PIN, HIGH);
-        Serial.write("OK");    //confermo
+        Serial.println("OK");    //confermo
         break;
       case 3:
-        Serial.print("SPENGO");
+        Serial.println("SPENGO");
         digitalWrite(LED_PIN, LOW);
-        Serial.write("OK");    //confermo
+        Serial.println("OK");    //confermo
         break;
       default:
-        Serial.write("Comando non conosciuto");
+        Serial.println("Comando non conosciuto");
     }
   }
-  delay(10);
+  delay(100);
 }

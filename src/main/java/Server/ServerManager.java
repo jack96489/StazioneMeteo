@@ -19,6 +19,7 @@ public class ServerManager {
     }
 
     private boolean luce;
+    private int potenziometro;
 
     public boolean isLuceAccesa() {
         return luce;
@@ -36,5 +37,13 @@ public class ServerManager {
 
     public synchronized void setLuce(boolean luce) {
         this.luce = luce;
+    }
+
+    public int getPotenziometro() {
+        return potenziometro;
+    }
+
+    public synchronized void setPotenziometro(int potenziometro) {
+        this.potenziometro = potenziometro;
     }
 }

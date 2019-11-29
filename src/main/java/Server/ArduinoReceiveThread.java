@@ -22,6 +22,14 @@ public class ArduinoReceiveThread extends Thread {
         while (true) {
             final String ris = socket.receiveString();
 
+            //Riceve il valore del potenziometro aggiornato
+            if (ris.startsWith("4:")) {
+                System.out.println(ris.split(":")[1]);
+                final int pot = Integer.parseInt(ris.split(":")[1]);
+                dati.setPotenziometro(pot);
+                System.out.println(pot + "---" + dati.getPotenziometro());
+                continue;
+            }
 
             //Riceve dall'Arduone i dati sullo stato della luce
             switch (ris) {

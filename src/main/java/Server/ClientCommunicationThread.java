@@ -33,7 +33,9 @@ public class ClientCommunicationThread extends Thread {
                 dati.spegniLuce();
                 response = "Spento";
                 break;
-            //QUI CI VA CASE 4 PER IL POTENZIOMETRO
+            case 4:
+                response = Integer.toString(dati.getPotenziometro());
+                break;
             default:
                 System.err.println("OOOOO");
                 break;
