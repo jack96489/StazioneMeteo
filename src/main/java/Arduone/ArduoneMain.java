@@ -10,6 +10,9 @@ import java.util.TooManyListenersException;
 
 //import jssc.SerialPort;
 
+/**
+ * @author Giacomo Orsenigo
+ */
 public class ArduoneMain {
     //SerialPort a;
 
@@ -19,21 +22,21 @@ public class ArduoneMain {
             final Seriale seriale = new Seriale();
             new ReceiveThread(seriale).start();
             SocketUDP socket = new SocketUDP();
+
+            //Aggiungo un event listener alla porta seriale in modo da sapere quando arrivano le richieste
             seriale.getPort().addEventListener(event -> {
                 if (event.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
                     try {
                         String receive = seriale.receiveString();
                         System.out.println(receive);
-                        System.out.println(receive.length());
-                        if (receive.startsWith("4:")) {
+                        if (!receive.equals(""))
                             socket.sendString(receive, Settings.SERVER_ARDUINO_PORT, Settings.SERVER_IP);
-                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             });
-        } catch (PortInUseException | UnsupportedCommOperationException | IOException | TooManyListenersException | NoSuchPortException e) {
+        } catch (PortInUseException | UnsupportedCommOperationException | IOException | TooManyListenersException e) {
             e.printStackTrace();
         }
 

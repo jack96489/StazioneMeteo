@@ -5,7 +5,9 @@ import Shared.Settings;
 import Shared.SocketUDP;
 
 /**
- * Riceve i dati dall'Arduone e li salva
+ * Riceve i dati dal client collegato all'Arduone e li elabora
+ *
+ * @author Giacomo Orsenigo
  */
 public class ArduinoReceiveThread extends Thread {
 
@@ -20,26 +22,24 @@ public class ArduinoReceiveThread extends Thread {
     public void run() {
         final ServerManager dati = ServerManager.getInstance();
         while (true) {
+
             final String ris = socket.receiveString();
 
-            //Riceve il valore del potenziometro aggiornato
-            if (ris.startsWith("4:")) {
-                System.out.println(ris.split(":")[1]);
-                final int pot = Integer.parseInt(ris.split(":")[1]);
-                dati.setPotenziometro(pot);
-                System.out.println(pot + "---" + dati.getPotenziometro());
-                continue;
-            }
-
-            //Riceve dall'Arduone i dati sullo stato della luce
-            switch (ris) {
-                case "luce spenta":
+            switch (ris.charAt(0)) {
+                case '2':
                     if (dati.isLuceAccesa())
                         dati.setLuce(false);
                     break;
-                case "luce accesa":
+                case '3':
                     if (!dati.isLuceAccesa())
                         dati.setLuce(true);
+                    break;
+                case '4':
+                    final int pot = Integer.parseInt(ris.split(":")[1]);
+                    dati.setPotenziometro(pot);
+                    break;
+                default:
+                    System.out.println(ris);
                     break;
             }
         }

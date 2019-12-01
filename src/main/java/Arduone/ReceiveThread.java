@@ -2,24 +2,22 @@ package Arduone;
 
 import Shared.Settings;
 import Shared.SocketUDP;
-import purejavacomm.*;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 /**
  * Ascolta le richieste provenienti dal server e destinate ad Arduone
+ *
+ * @author Giacomo Orsenigo
  */
 public class ReceiveThread extends Thread {
 
     private final SocketUDP socket;
     private final Seriale seriale;
 
-    public ReceiveThread(Seriale seriale) throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException, IOException {
+    public ReceiveThread(Seriale seriale) {
         socket = new SocketUDP(Settings.ARDUINO_PORT);
         this.seriale = seriale;
-
     }
 
     @Override

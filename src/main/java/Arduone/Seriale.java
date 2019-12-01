@@ -8,9 +8,14 @@ import purejavacomm.UnsupportedCommOperationException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.UncheckedIOException;
-import java.util.*;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Scanner;
 
+/**
+ * @author Giacomo Orsenigo
+ */
 public class Seriale {
     private final SerialPort port;
     private final InputStream inputStream;

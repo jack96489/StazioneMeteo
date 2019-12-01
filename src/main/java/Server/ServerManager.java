@@ -3,6 +3,9 @@ package Server;
 import Shared.Settings;
 import Shared.SocketUDP;
 
+/**
+ * @author Luca Mantica
+ */
 public class ServerManager {
     private static ServerManager INSTANCE;
     private final SocketUDP socket;

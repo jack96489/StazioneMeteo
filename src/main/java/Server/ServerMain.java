@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
+/**
+ * @author Luca Mantica
+ */
 public class ServerMain {
 
     private static final ServerManager dc = ServerManager.getInstance();

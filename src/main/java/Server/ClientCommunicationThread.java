@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
+/**
+ * @author Luca Mantica
+ */
 public class ClientCommunicationThread extends Thread {
 
     private final DatagramPacket packet;
@@ -37,7 +40,7 @@ public class ClientCommunicationThread extends Thread {
                 response = Integer.toString(dati.getPotenziometro());
                 break;
             default:
-                System.err.println("OOOOO");
+                System.err.println("Unknown command");
                 break;
         }
         DatagramPacket dp = new DatagramPacket(response.getBytes(), response.length(), packet.getSocketAddress());
